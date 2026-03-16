@@ -1,0 +1,71 @@
+<div class="container mt-4">
+
+<div class="card shadow p-4">
+
+<h2 class="titulo">Programar Vuelo</h2>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<label>Aeropuerto Origen</label>
+
+<input
+type="number"
+class="form-control"
+[(ngModel)]="vuelo.aeropuertoOrigen.idAeropuerto"
+placeholder="ID aeropuerto origen">
+
+</div>
+
+<div class="col-md-6">
+
+<label>Aeropuerto Destino</label>
+
+<input
+type="number"
+class="form-control"
+[(ngModel)]="vuelo.aeropuertoDestino.idAeropuerto"
+placeholder="ID aeropuerto destino">
+
+</div>
+
+</div>
+
+<div class="row mt-3">
+
+<div class="col-md-6">
+
+<label>Hora Salida</label>
+
+<input
+type="datetime-local"
+class="form-control"
+[(ngModel)]="vuelo.horaSalida">
+
+</div>
+
+<div class="col-md-6">
+
+<label>Hora Llegada</label>
+
+<input
+type="datetime-local"
+class="form-control"
+[(ngModel)]="vuelo.horaLlegada">
+
+</div>
+
+</div>
+
+<button
+class="btn btn-primary w-100 mt-4"
+(click)="guardar()">
+
+Programar Vuelo
+
+</button>
+
+</div>
+
+</div>

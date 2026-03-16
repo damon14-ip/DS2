@@ -1,0 +1,38 @@
+<div class="container">
+
+<div class="card">
+
+<h3>Check‑in de Pasajero</h3>
+
+<div class="mb-3">
+<label>ID Detalle Reserva</label>
+
+<input
+type="number"
+class="form-control"
+[(ngModel)]="detalleReserva">
+</div>
+
+<button
+class="btn btn-primary"
+(click)="realizar()">
+
+Realizar Check‑in
+
+</button>
+
+<div *ngIf="mensaje" class="alert alert-info mt-3">
+{{mensaje}}
+</div>
+
+<div *ngIf="tarjeta" class="tarjeta">
+
+<h4>Tarjeta de Embarque</h4>
+
+<p>{{tarjeta}}</p>
+
+</div>
+
+</div>
+
+</div>

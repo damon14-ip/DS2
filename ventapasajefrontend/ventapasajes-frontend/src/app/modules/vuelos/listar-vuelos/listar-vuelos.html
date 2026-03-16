@@ -1,0 +1,65 @@
+<div class="container mt-4">
+
+<h2 class="titulo">Lista de Vuelos</h2>
+
+<table class="table table-bordered table-hover">
+
+<thead class="table-dark">
+
+<tr>
+<th>ID</th>
+<th>Origen</th>
+<th>Destino</th>
+<th>Salida</th>
+<th>Llegada</th>
+<th>Estado</th>
+<th>Acciones</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr *ngFor="let v of vuelos">
+
+<td>{{v.idVuelo}}</td>
+<td>{{v.aeropuertoOrigen?.idAeropuerto}}</td>
+<td>{{v.aeropuertoDestino?.idAeropuerto}}</td>
+<td>{{v.horaSalida}}</td>
+<td>{{v.horaLlegada}}</td>
+
+<td>
+
+<span class="badge bg-primary">
+{{v.estado}}
+</span>
+
+</td>
+
+<td>
+
+<button
+class="btn btn-warning btn-sm me-2"
+(click)="cambiarEstado(v.idVuelo,'EN_VUELO')">
+
+En vuelo
+
+</button>
+
+<button
+class="btn btn-danger btn-sm"
+(click)="cambiarEstado(v.idVuelo,'MANTENIMIENTO')">
+
+Mantenimiento
+
+</button>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>

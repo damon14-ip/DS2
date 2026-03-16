@@ -1,0 +1,83 @@
+<div class="container mt-4">
+
+<div class="card">
+
+<h3>Crear Asiento</h3>
+
+<div *ngIf="mensaje" class="alert alert-info">
+{{mensaje}}
+</div>
+
+<div class="mb-3">
+
+<label>Número</label>
+
+<input
+class="form-control"
+[(ngModel)]="asiento.numero"
+name="numero">
+
+</div>
+
+<div class="mb-3">
+
+<label>Tipo</label>
+
+<select
+class="form-control"
+[(ngModel)]="asiento.tipo"
+name="tipo">
+
+<option value="COMERCIAL">COMERCIAL</option>
+<option value="VIP">VIP</option>
+
+</select>
+
+</div>
+
+<div class="mb-3" *ngIf="asiento.tipo=='VIP'">
+
+<label>Precio Extra</label>
+
+<input
+type="number"
+class="form-control"
+[(ngModel)]="asiento.precioExtra"
+name="precioExtra">
+
+</div>
+
+<div class="mb-3">
+
+<label>Avión</label>
+
+<select
+class="form-control"
+[(ngModel)]="asiento.avion.idAvion"
+name="avion">
+
+<option value="">Seleccione avión</option>
+
+<option
+*ngFor="let a of aviones"
+[value]="a.idAvion">
+
+{{a.modelo}}
+
+</option>
+
+</select>
+
+</div>
+
+<button
+class="btn btn-primary"
+(click)="guardar()">
+
+Guardar
+
+</button>
+
+</div>
+
+</div>

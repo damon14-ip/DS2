@@ -1,0 +1,68 @@
+<div class="container mt-4">
+
+<h3 class="text-center">Mapa de Asientos</h3>
+
+<div class="avion">
+
+<div
+class="asiento"
+*ngFor="let a of asientos"
+[ngClass]="{
+'vip': a.tipo=='VIP',
+'comercial': a.tipo=='COMERCIAL'
+}">
+
+{{a.numero}}
+
+</div>
+
+</div>
+
+<hr>
+
+<h3>Lista de Asientos</h3>
+
+<table class="table table-bordered">
+
+<thead class="table-dark">
+
+<tr>
+<th>ID</th>
+<th>Número</th>
+<th>Tipo</th>
+<th>Precio Extra</th>
+<th>Avión</th>
+<th>Acciones</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr *ngFor="let a of asientos">
+
+<td>{{a.idAsiento}}</td>
+<td>{{a.numero}}</td>
+<td>{{a.tipo}}</td>
+<td>{{a.precioExtra}}</td>
+<td>{{a.avion?.modelo}}</td>
+
+<td>
+
+<button
+class="btn btn-danger btn-sm"
+(click)="eliminar(a.idAsiento!)">
+
+Eliminar
+
+</button>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
