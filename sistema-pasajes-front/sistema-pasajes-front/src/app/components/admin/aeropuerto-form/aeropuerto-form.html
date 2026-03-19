@@ -1,0 +1,44 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow border-0">
+        <div class="card-header" [ngClass]="editMode ? 'bg-info text-white' : 'bg-success text-white'">
+          <h4 class="mb-0 text-center">
+            {{ editMode ? 'Actualizar Información' : 'Registrar Nuevo Aeropuerto' }}
+          </h4>
+        </div>
+        <div class="card-body p-4">
+          <form (ngSubmit)="guardar()">
+            <div class="mb-3">
+              <label class="form-label fw-bold">Nombre del Aeropuerto</label>
+              <input type="text" class="form-control" [(ngModel)]="aero.nombre" name="nombre" 
+                     placeholder="Ej: Jorge Chávez" required>
+            </div>
+            
+            <div class="mb-3">
+              <label class="form-label fw-bold">Ciudad</label>
+              <input type="text" class="form-control" [(ngModel)]="aero.ciudad" name="ciudad" 
+                     placeholder="Ej: Lima" required>
+            </div>
+            
+            <div class="mb-3">
+              <label class="form-label fw-bold">Código IATA</label>
+              <input type="text" class="form-control" [(ngModel)]="aero.codigoIata" name="codigoIata" 
+                     placeholder="Ej: LIM" maxlength="3" style="text-transform: uppercase;" required>
+              <small class="text-muted">Código único de 3 letras.</small>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+              <button type="button" class="btn btn-light border me-md-2" (click)="cancelar()">
+                Cancelar
+              </button>
+              <button type="submit" class="btn" [ngClass]="editMode ? 'btn-info text-white' : 'btn-success'">
+                {{ editMode ? 'Guardar Cambios' : 'Registrar Aeropuerto' }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="container mt-5">
+  <div class="card shadow border-0">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+      <h3 class="mb-0"><i class="bi bi-geo-alt"></i> Gestión de Aeropuertos</h3>
+      <button class="btn btn-light btn-sm fw-bold" (click)="nuevo()">
+        <i class="bi bi-plus-circle"></i> Nuevo Aeropuerto
+      </button>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead class="table-light">
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Ciudad</th>
+              <th>Código IATA</th>
+              <th class="text-center">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let a of aeropuertos">
+              <td><span class="badge bg-secondary">{{ a.id }}</span></td>
+              <td><strong>{{ a.nombre }}</strong></td>
+              <td>{{ a.ciudad }}</td>
+              <td><span class="text-primary fw-bold">{{ a.codigoIata }}</span></td>
+              <td class="text-center">
+                <button class="btn btn-outline-info btn-sm me-2" (click)="editar(a.id)">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button class="btn btn-outline-danger btn-sm" (click)="borrar(a.id)">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr *ngIf="aeropuertos.length === 0">
+              <td colspan="5" class="text-center text-muted py-4">
+                No hay aeropuertos registrados. Pulsa "Nuevo Aeropuerto" para empezar.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

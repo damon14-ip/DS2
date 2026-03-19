@@ -1,0 +1,70 @@
+<div class="container mt-4">
+  <div class="card border-0 shadow">
+    <div class="card-header bg-dark text-white py-3">
+      <h5 class="mb-0 text-center">✈️ Emisión de Pasajes AeroWeb</h5>
+    </div>
+    <div class="card-body p-4">
+      
+      <div class="mb-4">
+        <label class="form-label fw-bold">1. Seleccione el Vuelo:</label>
+        <select class="form-select form-select-lg border-primary" 
+                [(ngModel)]="idVueloSeleccionado" 
+                name="vueloSel">
+          <option [ngValue]="null" disabled>Elija un destino...</option>
+          <option *ngFor="let v of vuelos" [ngValue]="v.idVuelo">
+            {{v.origen.nombre}} ➡️ {{v.destino.nombre}} | 
+            Asientos Libres: {{v.asientosDisponibles}} | 
+            Base: ${{v.precioBase}}
+          </option>
+        </select>
+      </div>
+
+      <hr>
+
+      <div class="row">
+        <label class="form-label fw-bold mb-3">2. Información del Pasajero:</label>
+        
+        <div class="col-md-6 mb-3">
+          <label class="small text-muted">Nombre</label>
+          <input type="text" class="form-control" name="pNom" [(ngModel)]="pasajero.nombre" placeholder="Nombres">
+        </div>
+        
+        <div class="col-md-6 mb-3">
+          <label class="small text-muted">Apellido</label>
+          <input type="text" class="form-control" name="pApe" [(ngModel)]="pasajero.apellido" placeholder="Apellidos">
+        </div>
+        
+        <div class="col-md-4 mb-3">
+          <label class="small text-muted">Documento (DNI)</label>
+          <input type="text" class="form-control" name="pDoc" [(ngModel)]="pasajero.documento" placeholder="Número de identidad">
+        </div>
+        
+        <div class="col-md-4 mb-3">
+          <label class="small text-muted">Edad</label>
+          <input type="number" class="form-control" name="pEdad" [(ngModel)]="pasajero.edad">
+        </div>
+        
+        <div class="col-md-4 mb-3">
+          <label class="small text-muted">Clase / Asiento</label>
+          <select class="form-select" name="pTipo" [(ngModel)]="pasajero.tipoAsiento">
+            <option value="TURISTA">Clase Turista</option>
+            <option value="VIP">Clase VIP (+30%)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="mt-4 p-3 bg-light rounded d-flex justify-content-between align-items-center">
+        <div>
+          <span class="text-muted me-2">Precio Total:</span>
+          <h3 class="d-inline text-primary fw-bold">${{ getPrecioSeleccionado() | number:'1.2-2' }}</h3>
+        </div>
+        <button class="btn btn-success btn-lg px-5 shadow" 
+                (click)="procesarVenta()" 
+                [disabled]="!idVueloSeleccionado || !pasajero.documento || !pasajero.nombre">
+          <i class="bi bi-printer"></i> Generar Ticket y PDF
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+<div class="container mt-5">
+  <div class="card shadow">
+    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+      <h3 class="mb-0">Gestión de Aviones</h3>
+      <button class="btn btn-success btn-sm" (click)="abrirModalCrear()">
+        <i class="bi bi-plus-circle"></i> Nuevo Avión
+      </button>
+    </div>
+    <div class="card-body">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Modelo</th>
+            <th>Capacidad</th>
+            <th>Estado</th>
+            <th class="text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let avion of listaAviones">
+            <td>{{ avion.idAvion }}</td>
+            <td><strong>{{ avion.modelo }}</strong></td>
+            <td>{{ avion.capacidadTotal }} asientos</td>
+            <td>
+              <span class="badge" 
+                [ngClass]="{'bg-success': avion.estado === 'ACTIVO', 'bg-danger': avion.estado === 'INACTIVO', 'bg-warning text-dark': avion.estado === 'MANTENIMIENTO'}">
+                {{ avion.estado }}
+              </span>
+            </td>
+            <td class="text-center">
+              <button class="btn btn-info btn-sm me-2" (click)="editar(avion)">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn btn-danger btn-sm" (click)="borrar(avion.idAvion)">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="listaAviones.length === 0">
+            <td colspan="5" class="text-center">No hay aviones registrados.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
