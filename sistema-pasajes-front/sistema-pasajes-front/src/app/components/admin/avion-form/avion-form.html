@@ -1,0 +1,54 @@
+<div class="container mt-5">
+  <div class="card shadow border-0 mx-auto" style="max-width: 500px;">
+    <div class="card-header bg-primary text-white py-3">
+      <h4 class="mb-0 text-center">{{ editMode ? 'Editar' : 'Registrar' }} Avión</h4>
+    </div>
+    <div class="card-body p-4">
+      <form (ngSubmit)="guardar()">
+        
+        <div class="mb-3">
+          <label class="form-label fw-bold">Modelo</label>
+          <input type="text" class="form-control" [(ngModel)]="avion.modelo" name="modelo" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-bold">Capacidad Total</label>
+          <input type="number" class="form-control" [(ngModel)]="avion.capacidadTotal" name="capacidadTotal" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-bold">Ubicación Actual</label>
+          <select class="form-select" [(ngModel)]="avion.idAeropuertoActual" name="idAeropuertoActual" 
+                  (change)="onSelectionChange()" required>
+            <option [ngValue]="null" disabled>Seleccione aeropuerto...</option>
+            <option *ngFor="let aero of aeropuertos" [ngValue]="aero.id">
+              {{ aero.nombre }} ({{ aero.codigoIata }})
+            </option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-bold">Estado</label>
+          <select class="form-select" [(ngModel)]="avion.estado" name="estado">
+            <option value="ACTIVO">ACTIVO</option>
+            <option value="MANTENIMIENTO">MANTENIMIENTO</option>
+            <option value="INACTIVO">INACTIVO</option>
+          </select>
+        </div>
+
+        <div class="alert alert-light border small py-1">
+          ID Aero Seleccionado: <b>{{ avion.idAeropuertoActual || 'Falta seleccionar' }}</b>
+        </div>
+
+        <div class="d-flex justify-content-end mt-4">
+          <button type="button" class="btn btn-light me-2" (click)="cancelar()">Cancelar</button>
+          <button type="submit" class="btn btn-success px-4" 
+                  [disabled]="!avion.modelo || !avion.capacidadTotal || !avion.idAeropuertoActual">
+            {{ editMode ? 'Actualizar' : 'Registrar' }}
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

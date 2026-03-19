@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm" *ngIf="auth.currentUser()">
+  <div class="container">
+    <a class="navbar-brand fw-bold text-info" style="cursor: pointer;" 
+       [routerLink]="auth.currentUser().rol === 'ADMIN' ? '/admin/dashboard' : '/reservas'">
+      <i class="bi bi-airplane-engines"></i> AERO-WEB
+    </a>
+    
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/reservas" routerLinkActive="active">Reservar Pasaje</a>
+        </li>
+        
+        <li class="nav-item" *ngIf="auth.currentUser().rol === 'ADMIN'">
+          <a class="nav-link text-warning fw-bold" routerLink="/admin/dashboard" routerLinkActive="active">
+            <i class="bi bi-shield-lock"></i> PANEL ADMINISTRACIÓN
+          </a>
+        </li>
+      </ul>
+      
+      <div class="d-flex align-items-center">
+        <span class="text-light me-3 small">
+          <i class="bi bi-person-circle"></i> {{ auth.currentUser().email }}
+          <span class="badge bg-secondary ms-1">{{ auth.currentUser().rol }}</span>
+        </span>
+        <button class="btn btn-outline-danger btn-sm" (click)="auth.logout()">
+          <i class="bi bi-box-arrow-right"></i> Salir
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>

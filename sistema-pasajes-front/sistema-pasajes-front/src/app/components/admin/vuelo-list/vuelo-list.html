@@ -1,0 +1,64 @@
+<div class="container mt-5">
+  <div class="card shadow">
+    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+      <h3 class="mb-0">Panel de Control de Vuelos</h3>
+      <button class="btn btn-warning btn-sm fw-bold" (click)="nuevoVuelo()">
+        + Programar Vuelo
+      </button>
+    </div>
+
+    <div class="card-body">
+      <table class="table table-hover">
+        <thead class="table-light">
+          <tr>
+            <th>ID</th>
+            <th>Origen -> Destino</th>
+            <th>Fecha y Hora</th>
+            <th>Precio</th>
+            <th>Asientos</th>
+            <th class="text-center">Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let v of vuelos">
+
+            <!-- ✅ ID -->
+            <td>{{ v.idVuelo }}</td>
+
+            <!-- ✅ ORIGEN -> DESTINO -->
+            <td>
+              <strong>{{ v.nombreOrigen }}</strong>
+              <i class="bi bi-arrow-right"></i>
+              {{ v.nombreDestino }}
+            </td>
+
+            <!-- ✅ FECHA Y HORA (desde backend) -->
+            <td>{{ v.fechaSalida }}</td>
+
+            <!-- ✅ PRECIO -->
+            <td>{{ v.precioBase | currency }}</td>
+
+            <!-- ✅ ASIENTOS -->
+            <td>{{ v.asientosDisponibles }}</td>
+
+            <!-- ✅ ACCIONES -->
+            <td class="text-center">
+              <button class="btn btn-outline-danger btn-sm" (click)="borrar(v.idVuelo)">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+
+          </tr>
+
+          <tr *ngIf="vuelos.length === 0">
+            <td colspan="6" class="text-center py-4">
+              No hay vuelos programados.
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

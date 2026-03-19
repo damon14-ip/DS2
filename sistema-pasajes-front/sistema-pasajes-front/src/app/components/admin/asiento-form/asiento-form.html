@@ -1,0 +1,94 @@
+<div class="container">
+
+  <!-- 🔵 PANEL IZQUIERDO -->
+  <div class="panel">
+
+    <h3>✈️ Gestión de Asientos</h3>
+
+    <!-- AVIÓN -->
+    <select [(ngModel)]="avionId">
+      <option [ngValue]="null">Seleccione avión</option>
+      <option *ngFor="let a of aviones" [value]="a.idAvion">
+        {{a.modelo}}
+      </option>
+    </select>
+
+    <button (click)="buscar()">Buscar</button>
+
+    <hr>
+
+    <!-- CREAR ASIENTO -->
+    <h4>Crear Asiento</h4>
+
+    <input 
+      type="text" 
+      placeholder="Ej: A1" 
+      [(ngModel)]="nuevoAsiento.codigoAsiento">
+
+    <select [(ngModel)]="nuevoAsiento.clase">
+      <option value="ECONOMICA">ECONOMICA</option>
+      <option value="EJECUTIVA">EJECUTIVA</option>
+      <option value="PRIMERA_CLASE">PRIMERA CLASE</option>
+    </select>
+
+    <input 
+      type="number" 
+      placeholder="Precio extra" 
+      [(ngModel)]="nuevoAsiento.cargoAdicional">
+
+    <button class="crear" (click)="crear()">Crear</button>
+
+  </div>
+
+  <!-- ✈️ PANEL DERECHO -->
+  <div class="mapa-container" *ngIf="asientos.length">
+
+    <!-- INFO -->
+    <div class="info">
+      <div class="legend">
+        <span class="box libre"></span> Disponible
+        <span class="box ocupado"></span> Ocupado
+      </div>
+
+      <p>
+        Ocupado: {{ocupados}} / {{total}} ({{porcentaje()}}%)
+      </p>
+    </div>
+
+    <!-- MAPA -->
+    <div class="mapa">
+
+      <!-- CABECERA -->
+      <div class="fila header">
+        <span></span>
+        <span>A</span><span>B</span><span>C</span>
+        <span class="pasillo"></span>
+        <span>D</span><span>E</span><span>F</span>
+      </div>
+
+      <!-- FILAS -->
+      <div class="fila" *ngFor="let f of filas()">
+
+        <span class="numero">{{f.numero}}</span>
+
+        <ng-container *ngFor="let a of f.asientos; let i = index">
+
+          <div *ngIf="i === 3" class="pasillo"></div>
+
+          <div 
+            class="asiento"
+            [ngClass]="{ocupado: a.ocupado, libre: !a.ocupado}"
+            (click)="ocupar(a)"
+          >
+            {{a.codigoAsiento}}
+          </div>
+
+        </ng-container>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

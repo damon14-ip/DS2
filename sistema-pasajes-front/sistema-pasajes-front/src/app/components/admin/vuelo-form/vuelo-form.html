@@ -1,0 +1,79 @@
+<div class="container mt-5">
+  <div class="card shadow border-0">
+    <div class="card-header bg-dark text-white py-3">
+      <h4 class="mb-0 text-center">
+        <i class="bi bi-airplane-engines"></i> {{ editMode ? 'Editar' : 'Programar Nuevo' }} Vuelo
+      </h4>
+    </div>
+    <div class="card-body p-4">
+      <form (ngSubmit)="guardar()">
+        <div class="row">
+          
+          <div class="col-md-4 mb-3">
+            <label class="form-label fw-bold small text-muted text-uppercase">1. Aeropuerto Origen</label>
+            <select class="form-select border-primary" [(ngModel)]="vuelo.idAeropuertoOrigen" 
+                    name="idAeropuertoOrigen" (change)="cargarAvionesPorOrigen()" required>
+              <option [ngValue]="null" disabled>¿Desde dónde sale?</option>
+              <option *ngFor="let aero of aeropuertos" [ngValue]="aero.id">
+                {{aero.nombre}} ({{aero.codigoIata}})
+              </option>
+            </select>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label class="form-label fw-bold small text-muted text-uppercase">2. Avión Disponible</label>
+            <select class="form-select" [(ngModel)]="vuelo.idAvion" name="idAvion" 
+                    [disabled]="aviones.length === 0" required>
+              <option [ngValue]="null" disabled>
+                {{ aviones.length === 0 ? 'No hay aviones en este origen' : 'Seleccione avión...' }}
+              </option>
+              <option *ngFor="let a of aviones" [ngValue]="a.idAvion">
+                {{a.modelo}} (Capacidad: {{a.capacidadTotal}})
+              </option>
+            </select>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label class="form-label fw-bold small text-muted text-uppercase">3. Aeropuerto Destino</label>
+            <select class="form-select" [(ngModel)]="vuelo.idAeropuertoDestino" name="idAeropuertoDestino" required>
+              <option [ngValue]="null" disabled>¿A dónde va?</option>
+              <option *ngFor="let aero of aeropuertos" [ngValue]="aero.id">
+                {{aero.nombre}} ({{aero.codigoIata}})
+              </option>
+            </select>
+          </div>
+
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-6 mb-3">
+            <label class="form-label fw-bold small text-muted text-uppercase">Fecha y Hora de Salida</label>
+            <input type="datetime-local" class="form-control" [(ngModel)]="fechaCompleta" name="fechaCompleta" required>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label fw-bold small text-muted text-uppercase">Precio Base (USD)</label>
+            <div class="input-group">
+              <span class="input-group-text">$</span>
+              <input type="number" class="form-control" [(ngModel)]="vuelo.precioBase" name="precioBase" step="0.01" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert alert-secondary mt-3 small p-2">
+           <b>Origen:</b> {{vuelo.idAeropuertoOrigen || '---'}} | 
+           <b>Avión:</b> {{vuelo.idAvion || '---'}} | 
+           <b>Aviones encontrados:</b> {{aviones.length}}
+        </div>
+
+        <div class="d-flex justify-content-end mt-4 border-top pt-3">
+          <button type="button" class="btn btn-light me-2 px-4" (click)="cancelar()">Cancelar</button>
+          <button type="submit" class="btn btn-primary px-5 shadow-sm" 
+                  [disabled]="!vuelo.idAvion || !vuelo.idAeropuertoDestino || !fechaCompleta">
+            {{ editMode ? 'Actualizar Vuelo' : 'Crear Vuelo' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+<div class="container mt-5">
+  <div class="row mb-4">
+    <div class="col-12 text-center">
+      <h1 class="display-5 fw-bold text-primary">Panel de Control AeroWeb</h1>
+      <p class="lead text-muted">Gestión integral de la flota y operaciones aéreas.</p>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-md-3">
+      <div class="card h-100 shadow border-0 card-hover" (click)="navegar('aviones')">
+        <div class="bg-primary p-3 text-white text-center rounded-top">
+          <i class="bi bi-airplane-engines fs-1"></i>
+        </div>
+        <div class="card-body text-center">
+          <h2 class="fw-bold">{{ stats.aviones }}</h2>
+          <p class="text-uppercase text-muted small fw-bold mb-3">Aviones</p>
+          <button class="btn btn-sm btn-primary w-100 rounded-pill">Gestionar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card h-100 shadow border-0 card-hover" (click)="navegar('aeropuertos')">
+        <div class="bg-success p-3 text-white text-center rounded-top">
+          <i class="bi bi-geo-alt fs-1"></i>
+        </div>
+        <div class="card-body text-center">
+          <h2 class="fw-bold">{{ stats.aeropuertos }}</h2>
+          <p class="text-uppercase text-muted small fw-bold mb-3">Aeropuertos</p>
+          <button class="btn btn-sm btn-success w-100 rounded-pill">Gestionar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card h-100 shadow border-0 card-hover" (click)="navegar('vuelos')">
+        <div class="bg-warning p-3 text-dark text-center rounded-top">
+          <i class="bi bi-calendar-check fs-1"></i>
+        </div>
+        <div class="card-body text-center">
+          <h2 class="fw-bold">{{ stats.vuelos }}</h2>
+          <p class="text-uppercase text-muted small fw-bold mb-3">Vuelos</p>
+          <button class="btn btn-sm btn-dark w-100 rounded-pill">Gestionar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card h-100 shadow border-0 card-hover" (click)="navegar('usuarios')">
+        <div class="bg-info p-3 text-white text-center rounded-top">
+          <i class="bi bi-people fs-1"></i>
+        </div>
+        <div class="card-body text-center">
+          <h2 class="fw-bold">{{ stats.usuarios }}</h2>
+          <p class="text-uppercase text-muted small fw-bold mb-3">Usuarios</p>
+          <button class="btn btn-sm btn-info text-white w-100 rounded-pill">Gestionar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ✅ NUEVO: ASIENTOS -->
+    <div class="col-md-3">
+      <div class="card h-100 shadow border-0 card-hover" (click)="navegar('asientos')">
+        <div class="bg-secondary p-3 text-white text-center rounded-top">
+          <i class="bi bi-grid-3x3-gap fs-1"></i>
+        </div>
+        <div class="card-body text-center">
+          <h2 class="fw-bold">0</h2>
+          <p class="text-uppercase text-muted small fw-bold mb-3">Asientos</p>
+          <button class="btn btn-sm btn-secondary w-100 rounded-pill">Gestionar</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="mt-5 p-3 bg-white shadow-sm rounded border-start border-primary border-4 text-center">
+    <p class="mb-0 text-muted small">
+      <i class="bi bi-info-circle-fill text-primary"></i> 
+      Los datos mostrados se sincronizan automáticamente con la base de datos central.
+    </p>
+  </div>
+</div>
